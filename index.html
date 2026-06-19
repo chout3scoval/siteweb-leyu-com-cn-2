@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>乐鱼体育 · 运动生活陪伴</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #f9fafc;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      line-height: 1.7;
+      color: #1f2937;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+      padding: 2rem 1.5rem;
+    }
+
+    main {
+      max-width: 720px;
+      width: 100%;
+    }
+
+    /* hero 区域 */
+    .hero {
+      margin-bottom: 3.5rem;
+      padding: 2.5rem 0 1.5rem;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .hero-tag {
+      display: inline-block;
+      background-color: #e9ecf0;
+      color: #374151;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      padding: 0.2rem 1rem;
+      border-radius: 20px;
+      margin-bottom: 1.2rem;
+    }
+
+    .hero h1 {
+      font-size: 2.4rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+      color: #111827;
+    }
+
+    .hero p {
+      font-size: 1.05rem;
+      color: #4b5563;
+      max-width: 600px;
+    }
+
+    /* 信息卡片通用 */
+    .card-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 2.2rem;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 2rem 2rem 2.2rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02), 0 1px 4px rgba(0, 0, 0, 0.03);
+      transition: box-shadow 0.2s;
+    }
+
+    .card:hover {
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+    }
+
+    .card-title {
+      font-size: 1.4rem;
+      font-weight: 550;
+      letter-spacing: -0.01em;
+      color: #111827;
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid #f0f2f5;
+    }
+
+    .card p {
+      margin-bottom: 1rem;
+      color: #374151;
+    }
+
+    .card p:last-child {
+      margin-bottom: 0;
+    }
+
+    .list-slim {
+      list-style: none;
+      padding: 0;
+      margin: 1.2rem 0 0.4rem;
+    }
+
+    .list-slim li {
+      position: relative;
+      padding-left: 1.5rem;
+      margin-bottom: 0.65rem;
+      color: #374151;
+      line-height: 1.6;
+    }
+
+    .list-slim li::before {
+      content: "—";
+      position: absolute;
+      left: 0;
+      color: #9ca3af;
+    }
+
+    .highlight-link {
+      color: #2563eb;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.15s;
+    }
+
+    .highlight-link:hover {
+      border-bottom-color: #2563eb;
+    }
+
+    .link-sentence {
+      margin-top: 0.6rem;
+      background: #f3f5f8;
+      padding: 1rem 1.4rem;
+      border-radius: 14px;
+      font-size: 0.95rem;
+    }
+
+    .link-sentence a {
+      color: #1d4ed8;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .link-sentence a:hover {
+      text-decoration: underline;
+    }
+
+    /* 引用/提示小卡片 */
+    .note-box {
+      background: #f1f5f9;
+      border-left: 4px solid #9aa9bb;
+      padding: 1.2rem 1.5rem;
+      border-radius: 12px;
+      margin-top: 2.5rem;
+      font-size: 0.95rem;
+      color: #2c3e50;
+    }
+
+    .note-box strong {
+      font-weight: 600;
+      color: #1f2937;
+    }
+
+    /* 响应式 */
+    @media (max-width: 600px) {
+      body {
+        padding: 1.2rem 1rem;
+      }
+
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+
+      .card {
+        padding: 1.5rem;
+      }
+
+      .card-title {
+        font-size: 1.2rem;
+      }
+
+      .hero {
+        padding: 1.5rem 0 1rem;
+        margin-bottom: 2rem;
+      }
+    }
+
+    footer {
+      margin-top: 4rem;
+      border-top: 1px solid #e5e7eb;
+      padding-top: 2rem;
+      font-size: 0.85rem;
+      color: #6b7280;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+<main>
+  <!-- hero -->
+  <div class="hero">
+    <span class="hero-tag">运动生活方式</span>
+    <h1>乐鱼体育 · 日常里的运动感</h1>
+    <p>不盲目追逐胜负，更在意每一次投入的节奏。这里不谈夸张口号，只聊聊运动融入生活时那些真实、舒服的侧面。</p>
+  </div>
+
+  <!-- 信息卡片区 -->
+  <div class="card-grid">
+    <!-- 卡片1：主视觉/用途 -->
+    <div class="card">
+      <h2 class="card-title">那些与运动有关的小场景</h2>
+      <p>无论是下班后换上跑鞋沿着河边慢跑，还是周末约上朋友打一场半正式的羽毛球——运动往往不需要宏大理由。一套合身的衣服、一块平整的空地、一段完全属于自己的时间，就足以构成一次愉快的活动。</p>
+      <p>而当你习惯性地打开手机，想看看赛事片段、训练技巧，或者只是想找找同好聊几句最近的运动日常，一个清爽、不杂乱的信息环境就很重要。<a href="https://siteweb-leyu.com.cn" class="highlight-link">乐鱼体育</a>提供的正是这样一种氛围：内容围绕运动本身，界面简单直接，没有过度营销，更像一个安静的体育角落。</p>
+    </div>
+
+    <!-- 卡片2：用途卡片（具体用途） -->
+    <div class="card">
+      <h2 class="card-title">可以怎么用？</h2>
+      <p>每个人接触运动的方式都不一样，这个站点也对应几种常见需求：</p>
+      <ul class="list-slim">
+        <li>快速查找某项运动的基础规则与装备建议，不罗嗦不堆砌。</li>
+        <li>浏览不同运动类型的简要介绍，帮助发现自己可能感兴趣的领域。</li>
+        <li>了解一些冷门运动项目的背景，给日常运动清单增加一点新鲜感。</li>
+        <li>纯粹作为运动灵感的轻入口，随便看看，没有压力。</li>
+      </ul>
+      <p>它不试图代替专业训练平台，而是做一个温和的“运动信息伴侣”。</p>
+    </div>
+
+    <!-- 卡片3：适合人群 -->
+    <div class="card">
+      <h2 class="card-title">适合什么样的你？</h2>
+      <p>如果你有以下几种状态中的任何一种，或许会在这里找到熟悉的共鸣：</p>
+      <ul class="list-slim">
+        <li>刚开始规律运动，想要一个不贩卖焦虑的信息源。</li>
+        <li>已经坚持某项运动一段时间，偶尔想拓宽一下视野。</li>
+        <li>喜欢体育文化多于竞技本身，对运动背后的故事和氛围感兴趣。</li>
+        <li>只是想换换口味，别再刷那些千篇一律的推送流。</li>
+      </ul>
+      <p>没有年龄或体能门槛，纯粹因为运动本身就可以很包容。</p>
+    </div>
+
+    <!-- 卡片4：自然链接段落 + 延伸 -->
+    <div class="card">
+      <h2 class="card-title">从页面到真实体验</h2>
+      <p>浏览信息只是第一步，真正让运动成为习惯的，往往是那些不经意的触发。也许是读到一篇关于骑行路线的短文，也许是看到一种没试过的拉伸方式，然后你站起来，试了一下。</p>
+      <div class="link-sentence">
+        如果你需要一个安静、不浮夸的地方，偶尔去看看运动相关的内容，可以试试 <a href="https://siteweb-leyu.com.cn">乐鱼体育</a> —— 它不会催促你，但或许能给你一点走出去动一动的念头。
+      </div>
+    </div>
+  </div>
+
+  <!-- 提示 / FAQ 摘要 -->
+  <div class="note-box">
+    <strong>一点观察：</strong> 运动习惯的培养往往不是靠一两次决心，而是依靠低门槛的重复。一个页面、一个社区，如果能让“看一眼”变得轻松，就已经帮了不小的忙。保持简单，本身就是一种友好。
+  </div>
+
+  <footer>
+    <p>内容基于日常运动观察 · 无诱导承诺 · 纯粹信息分享</p>
+  </footer>
+</main>
+</body>
+</html>

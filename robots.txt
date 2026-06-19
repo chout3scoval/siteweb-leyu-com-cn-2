@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://chout3scoval.github.io/siteweb-leyu-com-cn-2/sitemap.xml

@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>满冠体育 · 再访卡片</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #f3f3f3;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      color: #2c2c2c;
+      line-height: 1.6;
+      padding: 28px 20px 60px;
+    }
+
+    .page-wrap {
+      max-width: 1040px;
+      margin: 0 auto;
+    }
+
+    /* 主视觉 —— 极简卡片组合 */
+    .hero-card {
+      background: #ffffff;
+      border: 1px solid #e9e9e9;
+      border-radius: 24px;
+      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.03);
+      padding: 48px 36px 40px;
+      margin-bottom: 36px;
+      transition: box-shadow 0.2s;
+    }
+
+    .hero-card:hover {
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.05);
+    }
+
+    .hero-tag {
+      font-size: 0.8rem;
+      letter-spacing: 1px;
+      color: #888;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 8px;
+      margin-bottom: 20px;
+      display: inline-block;
+    }
+
+    .hero-title {
+      font-size: 2.4rem;
+      font-weight: 350;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      color: #1f1f1f;
+      margin-bottom: 18px;
+    }
+
+    .hero-sub {
+      font-size: 1rem;
+      color: #5a5a5a;
+      max-width: 600px;
+      border-left: 3px solid #ccc;
+      padding-left: 18px;
+      margin-top: 8px;
+    }
+
+    .hero-sub a {
+      color: #2c2c2c;
+      text-decoration: underline;
+      text-underline-offset: 4px;
+      text-decoration-thickness: 1px;
+      text-decoration-color: #bbb;
+      font-weight: 450;
+    }
+
+    .hero-sub a:hover {
+      text-decoration-color: #666;
+    }
+
+    /* 卡片网格 —— 用途 + 人群 */
+    .card-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      margin-bottom: 36px;
+    }
+
+    .card-item {
+      background: #ffffff;
+      border: 1px solid #ebebeb;
+      border-radius: 20px;
+      padding: 30px 26px 28px;
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.02);
+      transition: all 0.2s;
+    }
+
+    .card-item:hover {
+      border-color: #d6d6d6;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.04);
+    }
+
+    .card-icon {
+      font-size: 1.8rem;
+      margin-bottom: 12px;
+      display: inline-block;
+      letter-spacing: 0;
+      opacity: 0.7;
+    }
+
+    .card-item h3 {
+      font-weight: 450;
+      font-size: 1.3rem;
+      letter-spacing: -0.01em;
+      margin-bottom: 10px;
+      color: #1d1d1d;
+    }
+
+    .card-item p {
+      font-size: 0.96rem;
+      color: #4b4b4b;
+      line-height: 1.65;
+    }
+
+    .card-item p + p {
+      margin-top: 12px;
+    }
+
+    .card-item a {
+      color: #2c2c2c;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-color: #c5c5c5;
+      font-weight: 450;
+    }
+
+    .card-item a:hover {
+      text-decoration-color: #666;
+    }
+
+    /* 自然链接段落 — 再访与收藏 */
+    .visit-block {
+      background: #ffffff;
+      border: 1px solid #e9e9e9;
+      border-radius: 20px;
+      padding: 32px 32px 30px;
+      margin-bottom: 32px;
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.02);
+    }
+
+    .visit-block h2 {
+      font-weight: 400;
+      font-size: 1.5rem;
+      letter-spacing: -0.01em;
+      border-bottom: 1px solid #efefef;
+      padding-bottom: 14px;
+      margin-bottom: 20px;
+      color: #1e1e1e;
+    }
+
+    .visit-block p {
+      font-size: 0.98rem;
+      color: #3e3e3e;
+      margin-bottom: 18px;
+    }
+
+    .visit-block p:last-child {
+      margin-bottom: 0;
+    }
+
+    .visit-block a {
+      color: #1f1f1f;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-color: #c0c0c0;
+      font-weight: 450;
+    }
+
+    .visit-block a:hover {
+      text-decoration-color: #6b6b6b;
+    }
+
+    /* 提示条 / 小faq */
+    .note-card {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px 28px;
+      background: #ffffff;
+      border: 1px solid #e9e9e9;
+      border-radius: 20px;
+      padding: 26px 30px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.01);
+    }
+
+    .note-item {
+      flex: 1 1 200px;
+    }
+
+    .note-item .label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #999;
+      margin-bottom: 6px;
+    }
+
+    .note-item .value {
+      font-size: 0.98rem;
+      color: #2c2c2c;
+      line-height: 1.5;
+    }
+
+    .note-item .value a {
+      color: #2c2c2c;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-color: #c0c0c0;
+    }
+
+    .note-item .value a:hover {
+      text-decoration-color: #777;
+    }
+
+    hr {
+      border: 0;
+      border-top: 1px solid #e8e8e8;
+      margin: 40px 0 20px;
+      opacity: 0.5;
+    }
+
+    .footer-note {
+      font-size: 0.82rem;
+      color: #8a8a8a;
+      text-align: center;
+      margin-top: 24px;
+    }
+
+    /* 响应式 */
+    @media (max-width: 680px) {
+      .hero-card {
+        padding: 36px 20px 30px;
+      }
+
+      .hero-title {
+        font-size: 1.9rem;
+      }
+
+      .card-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .card-item {
+        padding: 24px 20px;
+      }
+
+      .visit-block {
+        padding: 24px 20px;
+      }
+
+      .note-card {
+        padding: 22px 20px;
+      }
+    }
+
+    @media (max-width: 460px) {
+      body {
+        padding: 14px 12px 40px;
+      }
+
+      .hero-title {
+        font-size: 1.7rem;
+      }
+
+      .hero-sub {
+        font-size: 0.92rem;
+        padding-left: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-wrap">
+
+    <!-- 主视觉 -->
+    <div class="hero-card">
+      <div class="hero-tag">◈ 再次路过</div>
+      <div class="hero-title">满冠体育<br>从收藏到常驻</div>
+      <div class="hero-sub">
+        有些页面，适合留在标签栏里。<br>
+        不是第一次抵达，也不是最后一次。<br>
+        一种安静的回归——<a href="https://webs-mgsports.com">满冠体育</a>。
+      </div>
+    </div>
+
+    <!-- 双卡片：用途 + 适合人群 -->
+    <div class="card-grid">
+      <div class="card-item">
+        <div class="card-icon">📋</div>
+        <h3>它用来做什么</h3>
+        <p>一个围绕体育信息与内容的站点。没有复杂入口，把项目、动态与说明放在同一视线范围内。</p>
+        <p>如果你在找某个赛事、某个项目背景，或是想快速了解近期内容，<a href="https://webs-mgsports.com">满冠体育</a> 这个地址值得放在书签里。</p>
+      </div>
+      <div class="card-item">
+        <div class="card-icon">👤</div>
+        <h3>适合谁</h3>
+        <p>偶尔回看体育资讯的人；习惯通过一个固定网址获取动态的人；不想在多个页面跳转、希望界面干净的人。</p>
+        <p>也适合那些——对某个运动保持关注，但不追求实时推送的读者。</p>
+      </div>
+    </div>
+
+    <!-- 自然链接段落：再访、收藏与持续关注 -->
+    <div class="visit-block">
+      <h2>从“再次打开”开始</h2>
+      <p>我们常常收藏很多页面，之后却很少回去。而有些地方，会因为你第二次、第三次的访问，变得熟悉。<a href="https://webs-mgsports.com">满冠体育</a> 就是其中之一——没有复杂的层级，打开即是最近的内容。</p>
+      <p>收藏它，等于在浏览器里留一个安静的位置。下次想看看体育相关动向，不必重新搜索，直接点开就好。保持关注的方式可以很简单：记住这个地址，或者让它在书签栏里待着。</p>
+      <p>页面会更新，结构保持克制。不制造信息焦虑，只是持续地放着那些值得一看的体育内容。持续关注，是一种温和的习惯。</p>
+    </div>
+
+    <!-- 提示 / 小FAQ 摘要卡片 -->
+    <div class="note-card">
+      <div class="note-item">
+        <div class="label">常见的问题</div>
+        <div class="value">内容会定期调整吗？<br>会，但变化不会很剧烈。核心信息一直保留。</div>
+      </div>
+      <div class="note-item">
+        <div class="label">再次访问需要注意什么</div>
+        <div class="value">不需要注册，直接打开 <a href="https://webs-mgsports.com">满冠体育</a> 即可。页面结构清晰，适合快速浏览。</div>
+      </div>
+      <div class="note-item">
+        <div class="label">持续关注的方式</div>
+        <div class="value">把网址加入书签，或定期回访。没有邮件推送，但内容稳定。</div>
+      </div>
+    </div>
+
+    <hr>
+    <div class="footer-note">
+      — 满冠体育 · 一个可以再次打开的页面 —
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>安博体育 · 知识库入口</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(145deg, #ffe8d6 0%, #fdddc8 40%, #f7cdb5 100%);
+            padding: 2rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .page-wrapper {
+            max-width: 1100px;
+            width: 100%;
+        }
+
+        /* 目录感网格卡片 */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2.8rem;
+        }
+
+        .card {
+            background: #fffffffa;
+            backdrop-filter: blur(2px);
+            border-radius: 28px;
+            padding: 1.8rem 1.5rem 2rem;
+            box-shadow: 0 8px 20px rgba(180, 110, 60, 0.10), 0 2px 6px rgba(0, 0, 0, 0.02);
+            transition: transform 0.15s ease, box-shadow 0.2s;
+            border: 1px solid rgba(255, 220, 190, 0.3);
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 14px 28px rgba(160, 90, 50, 0.12);
+        }
+
+        .card h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            color: #5d3a24;
+            margin-bottom: 0.6rem;
+            border-left: 5px solid #d6956a;
+            padding-left: 0.8rem;
+        }
+
+        .card p, .card li {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #3f2b1d;
+        }
+
+        .card ul {
+            list-style: none;
+            margin-top: 0.6rem;
+        }
+
+        .card ul li::before {
+            content: "▹ ";
+            color: #b07a58;
+            font-weight: 500;
+        }
+
+        .tag {
+            display: inline-block;
+            background: #f1dfd3;
+            color: #4d3322;
+            font-size: 0.8rem;
+            font-weight: 500;
+            padding: 0.2rem 1rem;
+            border-radius: 40px;
+            margin-top: 1rem;
+        }
+
+        /* 说明+提示区 双栏 */
+        .info-split {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.8rem;
+            margin: 2.5rem 0 2.2rem;
+        }
+
+        .info-block {
+            flex: 1 1 240px;
+            background: #fffffffa;
+            border-radius: 28px;
+            padding: 1.8rem 1.6rem;
+            box-shadow: 0 6px 16px rgba(150, 80, 40, 0.06);
+            border: 1px solid #ffe1cc;
+        }
+
+        .info-block h4 {
+            font-size: 1.1rem;
+            color: #5a3823;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            margin-bottom: 0.8rem;
+            border-bottom: 1px dashed #e8cbb9;
+            padding-bottom: 0.5rem;
+        }
+
+        .info-block p {
+            font-size: 0.95rem;
+            line-height: 1.65;
+            color: #3b2a1d;
+        }
+
+        .info-block .small-note {
+            background: #faf1ea;
+            padding: 0.4rem 1rem;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            color: #6b4d36;
+            margin-top: 1rem;
+            display: inline-block;
+        }
+
+        /* 特色场景列表 */
+        .scenario-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem 1.2rem;
+            margin: 1.5rem 0 2rem;
+        }
+
+        .scenario-item {
+            background: #fefbf9;
+            border-radius: 60px;
+            padding: 0.5rem 1.4rem;
+            font-size: 0.9rem;
+            color: #4b3422;
+            border: 1px solid #efd5c2;
+            box-shadow: inset 0 1px 3px rgba(255,240,230,0.6);
+            transition: background 0.1s;
+            cursor: default;
+        }
+
+        .scenario-item:hover {
+            background: #f3e4d8;
+        }
+
+        /* 主标题区 / hero */
+        .hero {
+            margin-bottom: 0.6rem;
+        }
+
+        .hero h1 {
+            font-size: 2.3rem;
+            font-weight: 550;
+            color: #3f2a19;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+        }
+
+        .hero h1 span {
+            background: #8a5f44;
+            color: #faf0e7;
+            font-size: 1rem;
+            font-weight: 500;
+            padding: 0.2rem 1rem;
+            border-radius: 60px;
+            letter-spacing: 0.03em;
+        }
+
+        .hero .sub {
+            font-size: 1.05rem;
+            color: #4f3826;
+            max-width: 650px;
+            margin-top: 0.5rem;
+            background: rgba(255, 235, 220, 0.5);
+            padding: 0.4rem 1.2rem 0.4rem 0.8rem;
+            border-radius: 80px;
+            display: inline-block;
+            backdrop-filter: blur(1px);
+        }
+
+        /* 内嵌链接按钮样式 */
+        a {
+            color: #7a5137;
+            text-decoration: none;
+            font-weight: 500;
+            background: #f5e3d7;
+            padding: 0.1rem 0.6rem;
+            border-radius: 30px;
+            transition: background 0.15s, color 0.1s;
+            border: 1px solid transparent;
+        }
+
+        a:hover {
+            background: #e0c7b5;
+            color: #3f2a1c;
+            border-color: #bc9a82;
+        }
+
+        /* 底部相关信息区 */
+        .related-box {
+            background: #fcf4ed;
+            border-radius: 28px;
+            padding: 1.8rem 2rem;
+            margin-top: 1.8rem;
+            border: 1px solid #edd6c4;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 0.8rem 2rem;
+        }
+
+        .related-box .label {
+            font-weight: 600;
+            color: #553c2a;
+            font-size: 0.95rem;
+            letter-spacing: 0.02em;
+        }
+
+        .related-box .item {
+            background: #ffffff;
+            padding: 0.15rem 1.2rem;
+            border-radius: 60px;
+            font-size: 0.9rem;
+            color: #3c2b1e;
+            border: 1px solid #ddc1ad;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+        }
+
+        .faq-mini {
+            margin-top: 2.5rem;
+            background: #fcfaf8;
+            border-radius: 28px;
+            padding: 1.6rem 1.8rem;
+            border: 1px solid #e1cdbc;
+        }
+
+        .faq-mini details {
+            margin: 0.6rem 0;
+            border-bottom: 1px solid #eddacb;
+            padding-bottom: 0.6rem;
+        }
+
+        .faq-mini summary {
+            font-weight: 500;
+            color: #4b3322;
+            cursor: pointer;
+            padding: 0.2rem 0;
+            font-size: 0.95rem;
+        }
+
+        .faq-mini summary::-webkit-details-marker {
+            color: #a2785c;
+        }
+
+        .faq-mini p {
+            margin: 0.5rem 0 0.2rem 1.2rem;
+            color: #4a3729;
+            font-size: 0.9rem;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #ddc9bb;
+            margin: 1.2rem 0;
+            opacity: 0.4;
+        }
+
+        @media (max-width: 640px) {
+            body {
+                padding: 1.2rem 1rem;
+            }
+            .hero h1 {
+                font-size: 1.7rem;
+            }
+            .card-grid {
+                gap: 1rem;
+            }
+            .info-split {
+                gap: 1rem;
+            }
+            .related-box {
+                flex-direction: column;
+                gap: 0.6rem;
+                padding: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="page-wrapper">
+
+    <!-- hero 入口说明 -->
+    <div class="hero">
+        <h1>
+            📖 信息索引 · 安博体育
+            <span>知识库</span>
+        </h1>
+        <div class="sub">
+            ⚡ 稳定入口 · 分类说明 · 常见场景
+        </div>
+    </div>
+
+    <!-- 目录感卡片区：四个模块 -->
+    <div class="card-grid">
+        <div class="card">
+            <h3>🧭 平台概述</h3>
+            <p>安博体育是一个综合体育资讯与服务入口，提供赛事动态、运动知识及基础查询功能。</p>
+            <ul>
+                <li>体育项目覆盖广泛</li>
+                <li>信息更新保持节奏</li>
+                <li>界面结构相对简洁</li>
+            </ul>
+            <div class="tag">稳定入口</div>
+        </div>
+        <div class="card">
+            <h3>📋 常用指引</h3>
+            <p>页面布局以目录和卡片为主，便于快速定位感兴趣的内容。</p>
+            <ul>
+                <li>分类索引清晰</li>
+                <li>搜索辅助直达</li>
+                <li>内容模块独立</li>
+            </ul>
+            <div class="tag">分类浏览</div>
+        </div>
+        <div class="card">
+            <h3>📌 内容说明</h3>
+            <p>所有信息均来自公开整理，供参考与了解。具体细则以对应页面为准。</p>
+            <ul>
+                <li>赛事数据仅供参考</li>
+                <li>运动知识持续完善</li>
+                <li>不构成专业建议</li>
+            </ul>
+            <div class="tag">知识参考</div>
+        </div>
+        <div class="card">
+            <h3>🔗 相关关联</h3>
+            <p>如您希望直接浏览主站，可前往此链接：<a href="https://chinese-anbosports.com">安博体育</a>。</p>
+            <p style="margin-top: 0.8rem;">也可通过下方区域了解更多相关信息。</p>
+            <div class="tag">直达 · 无中间页</div>
+        </div>
+    </div>
+
+    <!-- 说明区 + 提示区（双栏） -->
+    <div class="info-split">
+        <div class="info-block">
+            <h4>📘 稳定入口说明</h4>
+            <p>本页面作为知识库式索引，聚焦于内容分类与快速查阅。所有指向主站的链接均直接跳转至 <a href="https://chinese-anbosports.com">安博体育</a>，无需中间跳板。</p>
+            <p style="margin-top: 0.8rem;">页面结构采用卡片与分区布局，降低信息过载，适合初次接触或需要快速定位的用户。</p>
+            <div class="small-note">✔ 入口稳定 · 目录指引</div>
+        </div>
+        <div class="info-block">
+            <h4>⚠️ 提示区</h4>
+            <p>使用过程中如遇内容变动，以主站最新发布为准。本索引页仅作为辅助说明，不存储用户数据。</p>
+            <p style="margin-top: 0.6rem;">建议通过 <a href="https://chinese-anbosports.com">安博体育</a> 获取一手信息。</p>
+            <div class="small-note">⏳ 信息仅供参考</div>
+        </div>
+    </div>
+
+    <!-- 场景标签 (特色场景) -->
+    <div style="margin: 0.2rem 0 0.2rem; font-weight: 500; color: #4f3624;">🏷️ 常见应用场景</div>
+    <div class="scenario-list">
+        <span class="scenario-item">赛事概览查询</span>
+        <span class="scenario-item">运动知识索引</span>
+        <span class="scenario-item">分类内容导览</span>
+        <span class="scenario-item">基础规则了解</span>
+        <span class="scenario-item">动态信息浏览</span>
+        <span class="scenario-item">入口书签保存</span>
+    </div>
+
+    <!-- 相关信息区 (横向) -->
+    <div class="related-box">
+        <span class="label">相关信息</span>
+        <span class="item">🔹 内容分类：赛事 / 知识 / 指南</span>
+        <span class="item">🔹 更新节奏：按周维护</span>
+        <span class="item">🔹 访问方式：直接访问主站</span>
+        <span class="item">🔹 无追踪 · 无广告干扰</span>
+    </div>
+
+    <!-- FAQ 摘要 -->
+    <div class="faq-mini">
+        <h4 style="color: #4f3624; font-weight: 600; margin-bottom: 0.6rem; font-size: 1.1rem;">❓ 常见说明 (FAQ 摘要)</h4>
+        <details>
+            <summary>这个页面和安博体育是什么关系？</summary>
+            <p>本页面是为 <a href="https://chinese-anbosports.com">安博体育</a> 编写的辅助索引，用于展示内容分类与入口说明，并非主站替代。</p>
+        </details>
+        <details>
+            <summary>如何快速到达主站？</summary>
+            <p>页面内所有带链接的「安博体育」文本均可直接跳转至主站，无需二次搜索。</p>
+        </details>
+        <details>
+            <summary>内容是否实时同步？</summary>
+            <p>索引页中的描述为主站公开信息的概览，细节请以主站最新页面为准。</p>
+        </details>
+        <details>
+            <summary>我可以将本页加入书签吗？</summary>
+            <p>当然可以。本页面作为知识库入口，适合收藏以便快速了解目录结构。</p>
+        </details>
+        <hr>
+        <p style="font-size: 0.85rem; color: #5f4838;">📎 如缺少所需分类，可尝试主站搜索或浏览完整目录。</p>
+    </div>
+
+    <!-- 底部微说明 -->
+    <div style="margin-top: 2rem; font-size: 0.8rem; color: #694f3b; text-align: center; border-top: 1px solid #ddc9bb; padding-top: 1rem; opacity: 0.7;">
+        知识库式入口 · 内容仅供参考 · 具体以主站为准
+    </div>
+
+</div>
+</body>
+</html>
